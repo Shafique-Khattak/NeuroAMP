@@ -13,7 +13,6 @@ def main():
     )
     args = parser.parse_args()
 
-    # Construct module name assuming the model files are in the 'model' folder
     module_name = f"model.{args.model}"
     print(f"Importing module: {module_name}")
 
@@ -24,8 +23,8 @@ def main():
         print(f"Error importing module {module_name}: {e}")
         return
 
-    # Look for a training entry point in the module:
-    # First try train_model(), then try main()
+    # training entry point in the module:
+    # First train_model(), then main()
     if hasattr(model_module, "train_model"):
         print(f"Starting training using {args.model}.train_model()...")
         model_module.train_model()
